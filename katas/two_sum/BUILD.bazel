@@ -1,0 +1,3 @@
+load("//tools:kata.bzl", "kata")
+
+kata(name = "two_sum")
