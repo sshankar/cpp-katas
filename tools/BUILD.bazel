@@ -1,0 +1,9 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+# Usage: bazel run //tools:new_kata -- <snake_case_name>
+cc_binary(
+    name = "new_kata",
+    srcs = ["new_kata.cc"],
+    data = ["//templates"],
+    deps = ["@rules_cc//cc/runfiles"],
+)

@@ -1,0 +1,5 @@
+filegroup(
+    name = "templates",
+    srcs = glob(["*.tmpl"]),
+    visibility = ["//tools:__pkg__"],
+)

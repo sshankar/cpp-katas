@@ -27,7 +27,7 @@ There is no `main.cpp`. `gtest_main` provides `main()`.
 ## Workflow
 
 ```sh
-./scripts/new_kata.sh two_sum            # scaffold a new kata
+bazel run //tools:new_kata -- two_sum    # scaffold a new kata
 bazel test //katas/two_sum:practice      # test your attempt
 bazel test //katas/two_sum:solution      # test the reference
 bazel test --config=solution //...       # all reference solutions must pass
