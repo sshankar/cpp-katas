@@ -1,0 +1,9 @@
+build --cxxopt=-std=c++20 --host_cxxopt=-std=c++20
+build --copt=-Wall --copt=-Wextra
+test --test_output=errors
+
+# Run only reference solutions, or only your attempts.
+test:solution --test_tag_filters=solution
+test:practice --test_tag_filters=practice
+
+try-import %workspace%/user.bazelrc
