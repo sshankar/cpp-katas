@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: bazel-contrib/setup-bazel@0.19.2
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ github.workflow }}
+          repository-cache: true
+
+      # Reference solutions must pass. Practice stubs only need to build:
+      # they fail until solved, so failing CI on them would be noise.
+      - name: Test reference solutions
+        run: bazel test --config=solution //...
+
+      - name: Build practice stubs
+        run: bazel build //...
+
+      - name: Generator produces a passing kata
+        run: |
+          bazel run //tools:new_kata -- ci_smoke
+          bazel test //katas/ci_smoke:solution
